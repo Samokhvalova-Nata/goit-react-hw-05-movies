@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Form, Input, Button, SearchIcon } from "./SearchBox.styled"
 import { Notify } from "notiflix";
 
-const SearchBox = ({ onSubmit }) => {
-    const [query, setQuery] = useState('');
+const SearchBox = ({ value, onSubmit }) => {
+    const [query, setQuery] = useState(value);
 
     const handleInputChange = e => setQuery(e.currentTarget.value);
 
@@ -34,6 +34,7 @@ const SearchBox = ({ onSubmit }) => {
 
 SearchBox.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    value: PropTypes.string,
 };
 
 export default SearchBox;

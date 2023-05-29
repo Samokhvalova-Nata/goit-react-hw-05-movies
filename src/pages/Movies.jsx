@@ -49,9 +49,9 @@ const Movies = () => {
             {error && Notify.failure(`${error.message}`)}
             <SearchBox value={query} onSubmit={updateQueryString} />
             {isLoading && <Loader />}
-            <MoviesList movies={movies}/>
+            <MoviesList movies={movies} />
         </main>
-    )
+    );
 };
 
 export default Movies;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Notify } from "notiflix";
+import { Navigate, useLocation, useParams } from "react-router-dom";
+// import { Notify } from "notiflix";
 import { fetchMovieDetails } from "API";
 import Loader from "components/Loader/Loader";
 import MovieCard from "components/MovieCard/MovieCard";
@@ -8,7 +8,7 @@ import { BackLink } from "./MoviesDetails.styled";
 
 
 const MoviesDetails = () => {
-    const [movieDetails, setMovieDetails] = useState([]);
+    const [movieDetails, setMovieDetails] = useState({});
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,16 +30,18 @@ const MoviesDetails = () => {
                 };
                 setMovieDetails(responseMovie);
             } catch (error) {
+                console.log('error', error)
                 setError(error);
             } finally {
-        setIsLoading(false);
+                setIsLoading(false);
+            };
         };
-        };
-    }, [movieId])
+    }, [movieId]);
 
     return (
         <>
-            {error && Notify.failure(`${error.message}`)}
+            {error && <Navigate to='/404'/>}
+            {/* {error && Notify.failure(`${error.message}`)} */}
             <BackLink to={backLinkHref.current}>Back</BackLink>
             {isLoading && <Loader />}
             <MovieCard info={movieDetails} />

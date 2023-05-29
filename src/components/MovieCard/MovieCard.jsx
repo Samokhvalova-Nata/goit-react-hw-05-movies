@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Outlet,  } from "react-router-dom";
 import { AddInfo, AddLink, Image, Info, Wrap } from "./MovieCard.styled";
 import { Suspense } from "react";
@@ -10,6 +10,7 @@ const DEFAULT_POSTER_URL =
 const MovieCard = ({ info }) => {
     const { title, poster_path, vote_average, overview, genres } = info;
 
+    // console.log('info', info)
     const posterUrl = poster_path
     ? `https://image.tmdb.org/t/p/w342/${poster_path}`
     : DEFAULT_POSTER_URL;
@@ -55,17 +56,17 @@ const MovieCard = ({ info }) => {
     );
 };
 
-// MovieCard.propTypes = {
-//     info: PropTypes.objectOf(PropTypes.shape({
-//         title: PropTypes.string,
-//         poster_path: PropTypes.string,
-//         vote_average: PropTypes.number,
-//         overview: PropTypes.string,
-//         genres: PropTypes.arrayOf(
-//         PropTypes.shape({
-//         name: PropTypes.string,
-//         })),
-//     }))
-// };
+MovieCard.propTypes = {
+    info: PropTypes.shape({
+        title: PropTypes.string,
+        poster_path: PropTypes.string,
+        vote_average: PropTypes.number,
+        overview: PropTypes.string,
+        genres: PropTypes.arrayOf(
+        PropTypes.shape({
+        name: PropTypes.string,
+        })),
+    })
+};
 
 export default MovieCard;

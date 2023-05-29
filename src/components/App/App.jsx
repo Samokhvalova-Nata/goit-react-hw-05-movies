@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { Container } from './App.styled';
+import SharedLayout from 'components/SharedLayout/SharedLayout';
+import ErrorPage from 'components/ErrorPage/ErrorPage';
 
 
 const Home = lazy(() => import("../../pages/Home"));
@@ -22,6 +23,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </Container>
       
